@@ -1,15 +1,23 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createTodo } from '../../redux/Actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { createTodo, showAlert } from '../../redux/Actions';
+import { IAlertReducer } from '../../types/types';
+import Alert from '../Alert/Alert';
 import './TodoForm.css';
 const TodoForm = () => {
     const [title, setTitle] = useState('');
     const dispatch = useDispatch();
+    const alertState = useSelector(
+        (state: IAlertReducer) => state.alertReducer
+    );
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!title.trim()) {
-            return
+            dispatch(
+                showAlert('Название дела не может быть пустым', 'warning')
+            );
+            return;
         }
 
         //@ts-ignore
@@ -22,21 +30,24 @@ const TodoForm = () => {
     return (
         <form
             onSubmit={handleSubmit}
-            className='mb-3 d-flex align-items-end justify-content-between'
+            
         >
-            <div className='form-group todo-input'>
-                <label htmlFor='' className='form-label'>
-                    Введите название дела
-                </label>
-                <input
-                    onChange={handleChangeInputValue}
-                    type='text'
-                    className='form-control'
-                    name=''
-                    id=''
-                />
+            {alertState.alertText.length > 0 && <Alert props={alertState} />}
+            <div  className='mb-3 d-flex align-items-end justify-content-between'>
+                <div className='form-group todo-input'>
+                    <label htmlFor='' className='form-label'>
+                        Введите название дела
+                    </label>
+                    <input
+                        onChange={handleChangeInputValue}
+                        type='text'
+                        className='form-control'
+                        name=''
+                        id=''
+                    />
+                </div>
+                <button className='btn btn-success'>создать</button>
             </div>
-            <button className='btn btn-success'>создать</button>
         </form>
     );
 };
