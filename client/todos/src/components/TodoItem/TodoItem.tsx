@@ -33,6 +33,7 @@ const TodoItem = ({ todo, deleteTodo, doneTodo, changeTodo }: ITodoProps) => {
 
     return (
         <li className={ `todo-item list-group-item d-flex justify-content-between align-items-center ${todo.done ? 'list-group-item-success' : ''}`}>
+            <span className='number_todo'>№{todo.id}</span>
             <div onKeyPress={handleSubmit} className="todo-text">
                 {isTodoEdit ? <input type='text' onChange={handleTitleChange}/> : <span className={`${todo.done ? 'title-done' : ''}`}>{todo.title}</span>}
          

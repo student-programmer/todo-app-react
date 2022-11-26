@@ -1,4 +1,8 @@
 .todo-header{
     background-color: #0071F7;
     color: white;
+    
+}
+.logo{
+    cursor:pointer;
 }
