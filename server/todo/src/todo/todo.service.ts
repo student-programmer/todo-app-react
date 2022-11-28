@@ -17,6 +17,7 @@ export class TodoService {
     const todo = new Todo();
 
     todo.title = createTodo.title;
+    todo.description = createTodo.description;
     todo.done = createTodo.done;
     return todo.save();
   }

@@ -4,7 +4,8 @@ import { Table, Model, Column } from 'sequelize-typescript';
 export class Todo extends Model {
   @Column
   title: string;
-
+  @Column
+  description: string;
   @Column({ defaultValue: false })
   done: boolean;
 }

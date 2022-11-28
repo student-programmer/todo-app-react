@@ -14,9 +14,10 @@ export enum ITodoActionTypes {
 }
 
 export interface ITodo {
-    id: string;
-    title: string;
-    done: boolean;
+	id: string;
+	done: boolean;
+	title: string;
+	description: string;
 }
 
 export interface IAlertState{
@@ -35,14 +36,18 @@ export interface IAlertReducer {
     alertReducer: IAlertState;
 }
 export interface IEditTodo {
-    title: string;
-    id: string;
-    done: boolean;
+	id: string;
+	done: boolean;
+	title: string;
+	description: string;
 }
 
 export interface ICreateAction {
     type: ITodoActionTypes.CREATE_TODO_SUCCESS | ITodoActionTypes.CREATE_TODO;
-    payload: string
+    payload: {
+        title: string,
+        description:string
+    }
 }
 export interface IDeleteAction {
     type: ITodoActionTypes.DELETE_TODO_SUCCESS | ITodoActionTypes.DELETE_TODO;

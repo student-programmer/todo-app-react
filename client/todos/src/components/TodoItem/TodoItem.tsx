@@ -5,7 +5,7 @@ interface ITodoProps {
     todo: ITodo;
     deleteTodo:(arg0: string) => void;
     doneTodo:(arg0: string, arg1: boolean) => void;
-    changeTodo:(arg0: string, arg1: boolean, arg2: string) => void
+    changeTodo:(arg0: string, arg1: boolean, arg2: string, arg3: string) => void
 }
 const TodoItem = ({ todo, deleteTodo, doneTodo, changeTodo }: ITodoProps) => {
     const handleDelete = () => deleteTodo(todo.id);
@@ -14,10 +14,11 @@ const TodoItem = ({ todo, deleteTodo, doneTodo, changeTodo }: ITodoProps) => {
 
     const [isTodoEdit, setIsTodoEdit] = useState(false);
     const [newTitle, setNewTitle] = useState('')
+    const [newDescription, setNewDescription] = useState('');
 
     const handleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) =>{
         if(event.key === 'Enter'){
-            changeTodo(newTitle, todo.done, todo.id)
+            changeTodo(todo.id, todo.done, newTitle, newDescription);
             setIsTodoEdit(!isTodoEdit)
         }
     }
@@ -28,6 +29,10 @@ const TodoItem = ({ todo, deleteTodo, doneTodo, changeTodo }: ITodoProps) => {
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) =>{
         setNewTitle(event.target.value)
     }
+    
+    const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+			setNewDescription(event.target.value);
+		};
 
 
 
@@ -36,7 +41,11 @@ const TodoItem = ({ todo, deleteTodo, doneTodo, changeTodo }: ITodoProps) => {
             <span className='number_todo'>№{todo.id}</span>
             <div onKeyPress={handleSubmit} className="todo-text">
                 {isTodoEdit ? <input type='text' onChange={handleTitleChange}/> : <span className={`${todo.done ? 'title-done' : ''}`}>{todo.title}</span>}
-         
+                
+            </div>
+            <div onKeyPress={handleSubmit} className="todo-text">
+               {isTodoEdit ? <input type='text' onChange={handleDescriptionChange}/> : <span className={`${todo.done ? 'title-done' : ''}`}>{todo.description}</span>}
+                
             </div>
             <div className="todo-btns">
                 <button className='todo-btn btn btn-success button-todo-item' onClick={handleComplete}>Завершить</button>

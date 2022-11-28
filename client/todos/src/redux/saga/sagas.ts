@@ -11,7 +11,8 @@ const delay = (time: number) => new Promise(resolve => setTimeout(resolve, time)
 function* sagaCreateTodo(action: ICreateAction): Generator<Effect, void> {
     try {
         const todoObject: Partial<ITodo> = {
-            title: action.payload,
+            title: action.payload.title,
+            description: action.payload.description,
             done: false,
         };
 

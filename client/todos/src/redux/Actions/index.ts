@@ -6,12 +6,22 @@ export const getTodos = () => {
         
     }
 }
-export const createTodo = (payload: string) => {
-    return {
-        type: ITodoActionTypes.CREATE_TODO,
-        payload
-    }
-}
+// export const createTodo = (payload: string) => {
+// 	return {
+// 		type: ITodoActionTypes.CREATE_TODO,
+// 		payload
+        
+// 	};
+// };
+export const createTodo = (title: string, description: string) => {
+	return {
+		type: ITodoActionTypes.CREATE_TODO,
+		payload: {
+            title, 
+            description
+        }
+	};
+};
 export const deleteTodo = (payload: string) => {
     return {
         type: ITodoActionTypes.DELETE_TODO,
@@ -27,16 +37,17 @@ export const completeTodo = ( id: string, done: boolean) => {
         }
     }
 }
-export const editTodo = ( id: string, done: boolean, title: string) => {
-    return {
-        type: ITodoActionTypes.EDIT_TODO,
-        payload:{
-            id, 
-            done,
-            title
-        }
-    }
-}
+export const editTodo = (id: string, done: boolean, title: string, description: string) => {
+	return {
+		type: ITodoActionTypes.EDIT_TODO,
+		payload: {
+			id,
+			done,
+			title,
+			description,
+		},
+	};
+};
 export const showAlert = ( text:string, status: string) => {
     return {
         type: ITodoActionTypes.SHOW_ALERT,
