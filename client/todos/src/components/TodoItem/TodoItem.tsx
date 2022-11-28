@@ -13,6 +13,7 @@ const TodoItem = ({ todo, deleteTodo, doneTodo, changeTodo }: ITodoProps) => {
 
 
     const [isTodoEdit, setIsTodoEdit] = useState(false);
+    const [isTodoEditDescription, setIsTodoEditDescription] = useState(false);
     const [newTitle, setNewTitle] = useState('')
     const [newDescription, setNewDescription] = useState('');
 
@@ -20,10 +21,12 @@ const TodoItem = ({ todo, deleteTodo, doneTodo, changeTodo }: ITodoProps) => {
         if(event.key === 'Enter'){
             changeTodo(todo.id, todo.done, newTitle, newDescription);
             setIsTodoEdit(!isTodoEdit)
+            setIsTodoEditDescription(!isTodoEditDescription);
         }
     }
     const handleTodoEdit = () =>{
         setIsTodoEdit(!isTodoEdit)
+        setIsTodoEditDescription(!isTodoEditDescription);
     }
     
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) =>{
@@ -44,12 +47,12 @@ const TodoItem = ({ todo, deleteTodo, doneTodo, changeTodo }: ITodoProps) => {
                 
             </div>
             <div onKeyPress={handleSubmit} className="todo-text">
-               {isTodoEdit ? <input type='text' onChange={handleDescriptionChange}/> : <span className={`${todo.done ? 'title-done' : ''}`}>{todo.description}</span>}
+               {isTodoEditDescription ? <input type='text' onChange={handleDescriptionChange}/> : <span className={`${todo.done ? 'title-done' : ''}`}>{todo.description}</span>}
                 
             </div>
             <div className="todo-btns">
                 <button className='todo-btn btn btn-success button-todo-item' onClick={handleComplete}>Завершить</button>
-                <button className='todo-btn btn btn-primary button-todo-item' onClick={handleTodoEdit} >Изменить</button>
+                <button className='todo-btn btn btn-primary button-todo-item' onClick={handleTodoEdit}>Изменить</button>
                 <button className='todo-btn btn btn-danger' onClick={handleDelete}>Удалить</button>
             </div>
         </li>

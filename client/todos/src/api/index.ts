@@ -20,4 +20,4 @@ export class TodoApi {
         const res = await axios.patch(`http://localhost:5000/todo/${todo.id}`, todo);
         return res.data[1][0]
     }
-}
+}   
