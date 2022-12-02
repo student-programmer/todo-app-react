@@ -18,6 +18,8 @@ export interface ITodo {
 	done: boolean;
 	title: string;
 	description: string;
+    creationDate: Date,
+    updatedOn: Date
 }
 
 export interface IAlertState{
@@ -40,6 +42,8 @@ export interface IEditTodo {
 	done: boolean;
 	title: string;
 	description: string;
+    creationDate: Date,
+    updatedOn: Date
 }
 
 export interface ICreateAction {

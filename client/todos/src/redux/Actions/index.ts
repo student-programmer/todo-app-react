@@ -6,13 +6,7 @@ export const getTodos = () => {
         
     }
 }
-// export const createTodo = (payload: string) => {
-// 	return {
-// 		type: ITodoActionTypes.CREATE_TODO,
-// 		payload
-        
-// 	};
-// };
+
 export const createTodo = (title: string, description: string) => {
 	return {
 		type: ITodoActionTypes.CREATE_TODO,

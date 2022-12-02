@@ -1,4 +1,10 @@
-import { Table, Model, Column } from 'sequelize-typescript';
+import {
+  Table,
+  Model,
+  Column,
+  CreatedAt,
+  UpdatedAt,
+} from 'sequelize-typescript';
 
 @Table({ tableName: 'todo' })
 export class Todo extends Model {
@@ -8,4 +14,8 @@ export class Todo extends Model {
   description: string;
   @Column({ defaultValue: false })
   done: boolean;
+  @CreatedAt
+  creationDate: Date;
+  @UpdatedAt
+  updatedOn: Date;
 }
